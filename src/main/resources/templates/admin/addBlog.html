@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<!-- Begin Head -->
+
+<head>
+    <title>添加博客 - 博客管理系统</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/icofont.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/style.css">
+	<link rel="stylesheet" id="theme-change" type="text/css" href="">
+    <link rel="stylesheet" href="../../static/lib/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+
+<body>
+	<div class="loader">
+	  <div class="spinner">
+		<img src="../../static/picture/loader.gif" alt="">
+	  </div> 
+	</div>
+    <!-- Main Body -->
+    <div class="page-wrapper">
+        <!-- Header Start -->
+        <header class="header-wrapper main-header">
+            <div class="header-inner-wrapper">
+                <div class="logo-wrapper">
+                    <a href="" class="admin-logo">
+                        <img src="../../static/picture/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="header-right">
+                    <div class="serch-wrapper">
+                        <form>
+                            <input type="text" placeholder="Search Here...">
+                        </form>
+                        <a class="search-close" href="javascript:void(0);"><span class="icofont-close-line"></span></a>
+                    </div>
+                    <div class="header-left">
+                        <div class="header-links">
+                            <a href="javascript:void(0);" class="toggle-btn">
+                                <span></span>
+                            </a>
+                        </div>
+                       
+                    </div>
+                    <div class="header-controls">
+                    
+
+                        <div class="user-info-wrapper header-links">
+                            <a href="javascript:void(0);" class="user-info">
+                                <img src="../../static/picture/user.jpg" alt="" class="user-img">
+                                <div class="blink-animation">
+                                    <span class="blink-circle"></span>
+                                    <span class="main-circle"></span>
+                                </div>
+                            </a>
+                            <div class="user-info-box">
+                                <div class="drop-down-header">
+                                    <h4>admin</h4>
+                                    <p>管理员</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="login.html">
+                                            <i class="fas fa-sign-out-alt"></i> 退出
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Sidebar Start -->
+        <!-- Sidebar Start -->
+        <aside class="sidebar-wrapper">
+            <div class="side-menu-wrap">
+                <ul class="main-menu">
+                    <li>
+                        <a href="/admin/index" class="active">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            </span>
+                            <span class="menu-text">
+                                博客
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/types">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </span>
+                            <span class="menu-text">
+                                分类
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/comment">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                            <span class="menu-text">
+                                留言板
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/key">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </span>
+                            <span class="menu-text">
+                                密钥
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </aside>
+        <!-- Container Start -->
+
+        <div class="page-wrapper">
+            <div class="ui container">
+                      <form id="blog-form" action="/admin/addBlog" method="post" class="ui form">
+                        <input type="hidden" name="published">
+                        <div class="required field">
+                          <div class="ui left labeled input">
+                            <input type="text" name="title" placeholder="标题" >
+                          </div>
+                        </div>
+                
+                        <div class="required field">
+                            <div id = "md-content" style="z-index : 1 !important">
+                            <textarea placeholder="博客内容" name="content" style="display: none;"></textarea>
+                            </div>
+                        </div>
+                
+                        <div class="two fields">
+                          <div class="required field">
+                            <div class="ui left labeled action input">
+                              <label class="ui compact teal basic label">分类</label>
+                              <div class="ui fluid selection dropdown">
+                                <!--新增-->
+                                <input type="hidden" name="type.id" >
+                                <!--编辑-->
+                                <input type="hidden" name="typeId" >
+                                <i class="dropdown icon"></i>
+                                <div class="default text">分类</div>
+                                <div class="menu" >
+                                  <div class="item" th:each="type:${types}" th:text="${type.getName()}" th:data-value="${type.getName()}" data-value="1">我的故事</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="required field">
+                            <div class="ui left labeled input">
+                              <label class="ui teal basic label">首图</label>
+                              <input type="text" name="firstPicture" placeholder="首图引用地址">
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="required field">
+                          <textarea name="description" placeholder="博客描述..." maxlength="200" ></textarea>
+                        </div>
+                
+                        <div class="ui error message"></div>
+                
+                        <div class="ui right aligned container">
+                          <button type="button" class="ad-btn" onclick="window.history.go(-1)" >返回</button>
+                          <button type="button" id="save-btn" class="ad-btn">保存</button>
+                          <button type="button" id="publish-btn" class="ad-btn">发布</button>
+                        </div>
+                
+                      </form>
+                    </div>
+                  </div>
+        </div>
+    </div>
+	
+    <!-- Script Start -->
+	<script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/popper.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+	<script src="../../static/js/swiper.min.js"></script>
+    <script src="../../static/js/apexcharts.min.js"></script>
+    <script src="../../static/js/control-chart-apexcharts.js"></script>
+	<!-- Page Specific -->
+    <script src="../../static/js/nice-select.min.js"></script>
+    <!-- Custom Script -->
+    <script src="../../static/js/custom.js"></script>
+    <script src="../../static/lib/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="../../static/lib/semantic/dist/semantic.min.js"></script>
+    <script src="../../static/lib/editormd/editormd.min.js" ></script>
+</body>
+<script>
+
+    let contentEditor;
+    $(function(){
+        contentEditor= editormd("md-content", {
+            width: "100%",
+            height : 640,
+            syncScrolling : "single",
+            path : "../../static/lib/editormd/lib/",
+            // markdown : md-content,
+            // codeFold : true,
+            // //syncScrolling : false,
+            // saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+            // searchReplace : true,
+            htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+            // //toolbar  : false,             //关闭工具栏
+            // //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            // emoji : true,
+            // taskList : true,
+            tocm : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            // //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+            // //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+            // //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+            // //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+            // //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+            // imageUpload : true,
+            // imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"]
+        });
+    })
+
+
+
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+      on : 'hover'
+    });
+
+    $('#save-btn').click(function () {
+      $('[name="published"]').val(false);
+      $('#blog-form').submit();
+    });
+
+    $('#publish-btn').click(function () {
+      $('[name="published"]').val(true);
+      $('#blog-form').submit();
+    });
+
+
+
+    $('.ui.form').form({
+      fields : {
+        title : {
+          identifier: 'title',
+          rules: [{
+            type : 'empty',
+            prompt: '标题：请输入博客标题'
+          }]
+        },
+        content : {
+          identifier: 'content',
+          rules: [{
+            type : 'empty',
+            prompt: '标题：请输入博客内容'
+          }]
+        },
+        typeId : {
+          identifier: 'type.id',
+          rules: [{
+            type : 'empty',
+            prompt: '标题：请输入博客分类'
+          }]
+        },
+        firstPicture : {
+          identifier: 'firstPicture',
+          rules: [{
+            type : 'empty',
+            prompt: '标题：请输入博客首图'
+          }]
+        },
+        description : {
+          identifier: 'description',
+          rules: [{
+            type : 'empty',
+            prompt: '标题：请输入博客描述'
+          }]
+        }
+      }
+    });
+
+</script>
+</html>

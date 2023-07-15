@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${Blog.getTitle()}">文章</title>
+    <link href="../static/images/favicon.ico"rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="../static/lib/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <link rel="stylesheet" href="../static/css/animate.css" >
+    <link rel="stylesheet" href="../static/lib/prism/prism.css">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <link rel="stylesheet" href="../static/css/timeline.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+
+<!--导航-->
+<nav class="gird-header" style="background-color: #0e7ed2">
+    <div class="ui m-container" >
+        <div class="ui inverted secondary stackable menu ">
+            <a href="/index" style="max-width: 200px" target="_self"><h2 class="ui olive header item" style="font-family: Comic Sans MS;color: #c2dde6 !important;">YANG</h2></a>
+            <a href="/index" class="m-item item m-mobile-hide" target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;">首页</a>
+            <a href="/type" class="active m-item item m-mobile-hide"  target="_self" style="background-color: #f9f9ff !important;color:#151516 !important;font-family: STHeiti;font-size: 15px;">分类</a>
+            <a href="/message" class="m-item item m-mobile-hide"  target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;">留言板</a>
+            <a href="/about" class="m-item item m-mobile-hide"  target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;">关于我</a>
+            <a href="/uLogin" th:unless="${session.account}"  class="right m-item item ui secondary basic button m-mobile-hide" target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;"><i class="sign in icon"></i>登录</a>
+            <div class="user-info-wrapper right m-item item ui secondary basic m-mobile-hide" th:if="${session.account}">
+                <a href="javascript:void(0);" class="user-info">
+                    <img th:if="${session.account}" th:src="${session.account.getAvatar()}" src="../static/images/me.jpg" alt="" class="user-img">
+                    <div class="blink-animation" th:if="${session.account.getComment()} > 0">
+                        <span class="main-circle" style="background:#FA5A57;"></span>
+                    </div>
+                </a>
+                <div class="user-info-box">
+                    <div class="drop-down-header">
+                        <h4 th:if="${session.account}" th:text="${session.account.getNickname()}">me</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="/profile" target="_self">
+                                <i class="far fa-edit"></i> 个人资料
+                            </a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="/replyView" target="_self">
+                                <i class="far fa-edit"></i> 回复
+                            </a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="/logout" target="_self">
+                                <i class="fas fa-sign-out-alt"></i> 退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a  class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+
+<!--顶部图片-->
+<div  class="m-bg-type_outer" style="width: 100%;height: 55%">
+    <img src="../static/images/blog.jpg" th:src="${Blog.getFirstPicture()}" alt="" class="ui m-bg image"
+         style="width: 100%;height: 100%;">
+    <div class="m-bg-class_cover">
+        <div class="ui container" style="position: relative ;bottom: -540px;">
+            <h2 class="m-font-size-title-large" align="center" th:text="${Blog.getTitle()}">标题</h2>
+            <div class="ui container" align="center">
+                <div class="ui horizontal link list" align="center">
+                    <div class="item">
+                        <i class="user outline outline icon m-font-size-text-mini" style="vertical-align: top" ></i>
+                        <a href="#" style="color: #ffffff;font-size: 15px">YANG</a>
+                    </div>
+                    <div class="item">
+                        <i class="calendar icon m-font-size-text-mini" style="vertical-align: top" ></i>
+                        <span class="m-font-size-text-mini" th:text="${Blog.getCreateTime()}">2020-01-01</span>
+                    </div>
+                    <div class="item">
+                        <i class="eye icon m-font-size-text-mini" style="vertical-align: top" ></i> <span class="m-font-size-text-mini" th:text="${Blog.getViews()}">2222</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--中间内容-->
+<div id="waypoint" class="m-margin- animated fadeIn">
+    <div class="ui container m-opacity box-shadow-max">
+        <!--内容-->
+        <div class="ui attached padded segment">
+            <!--中间主要内容部分-->
+            <div id="Maincontent" class="typo typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large" th:text="${Blog.getContent()}" style="overflow: scroll">
+                略
+            </div>
+            <div class="ui horizontal divider">end</div>
+        </div>
+        <div class="ui bottom attached segment">
+            <!--评论区域列表-->
+            <div class="ui teal segment" id="message-container" >
+                <div>
+                    <div class="ui threaded comments" style="max-width: 100%;" >
+                        <h3 class="ui dividing header">留言</h3>
+                        <div class="comment" th:each="comments:${comment}">
+                            <a class="avatar">
+                                <img src="../static/images/me.jpg" th:src="${comments.getAvatar()}">
+                            </a>
+                            <div class="content">
+                                <a class="author">
+                                    <span th:text="${comments.getNickname()}">Matt</span>
+                                </a>
+                                <div class="metadata">
+                                    <span class="text" th:text="${comments.getCreateTime()}">今天下午 5:42</span>
+                                </div>
+                                <div class="text" th:text="${comments.getContent()}">太赞了！ </div>
+                                <div class="actions" th:if="${session.account}">
+                                    <a class="reply" th:href="'/replyComment/'+${comments.getBlogId()}+'/'+${comments.getId()}+'/'+${comments.getUid()}+'/'" th:if = "${session.account}" data-parentmessageid="1" data-messagenickname="Matt" data-rootmessageid="1" onclick="return reply(this)">回复</a>
+                                    <a class="delete" th:if = "${comments.getUid() == session.account.getUid()}" href="#"  th:href="'/deleteComment/'+${comments.getBlogId()}+'/'+${comments.getId()}" onclick="return confirm('确定要删除该评论吗？')" >删除</a>
+                                </div>
+                            </div>
+                            <!--                          子集留言-->
+                            <div class="comments" th:each="roots:${comments.getRootComment()}">
+                                <div class="comment" >
+                                    <a class="avatar">
+                                        <img th:src="${roots.getAvatar()}" src="../static/images/me.jpg" >
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">
+                                            <span th:text="${roots.getNickname()}">小红</span>
+                                        </a>
+                                        <div class="metadata">
+                                            <span class="date" th:text="${roots.getCreateTime()}">今天下午 5:42</span>
+                                        </div>
+                                        <div class="text" th:text="${roots.getContent()}">太赞了！ </div>
+                                        <div class="actions" th:if="${session.account}">
+                                            <a class="delete" th:if = "${roots.getUid() == session.account.getUid()}" href="#"  th:href="'/deleteComment/'+${comments.getBlogId()}+'/'+${roots.getId()}" onclick="return confirm('确定要删除该评论吗？')" >删除</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="comment-form" class="ui form">
+
+                <input type="hidden" name="parentMessage.id" >
+                <input type="hidden" name="rootMessage.id">
+                <!--                    留言区-->
+                <form method="post" th:action="'/commentMessage/'+${Blog.getId()}">
+                    <div class="field" th:if = "${session.account}">
+                        <textarea id = "inputMessage" name="content" placeholder="请输入留言信息..."></textarea>
+                    </div>
+                    <div class="field" th:unless = "${session.account}">
+                        <textarea disabled></textarea>
+                        <p style="color: red">登陆后才允许留言</p>
+                    </div>
+
+                    <div class="fields">
+                        <div class="right aligned two wide column">
+                            <div class="field m-mobile-wide m-margin-bottom-small">
+                                <button th:if = "${session.account}" id="messagepost-btn" type="submit" class="ui teal button m-mobile-wide" style="width:100px;height: 40px"><i class="edit icon"></i>评论</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<!--底部栏-->
+<footer class="ui vertical segment m-padded-tb-massive m-opacity">
+    <!--容器-->
+    <div class="ui center aligned container">
+      <div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced">CREATE BY YANG</div>
+    </div>
+    </div>
+
+</footer>
+<!--    动态线条-->
+<script type="text/javascript" color="47,79,79" opacity='0.7' zIndex="-2" count="150" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+<script src="../static/lib/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+<script src="../static/lib/semantic/dist/semantic.min.js"></script>
+<script src="../static/lib/scrollTo/jquery.scrollTo.min.js"></script>
+<script src="../static/lib/qrcode/qrcode.min.js" ></script>
+<script src="../static/lib/prism/prism.js" ></script>
+<script src="../static/lib/tocbot/tocbot.min.js"></script>
+<script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<script src="../static/js/showdown.min.js"></script>
+<script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+</body>
+
+<script>
+    function reply(element) {
+        var inputValue = prompt("请输入内容："); // 弹出输入框
+
+        if (inputValue !== null && inputValue.trim() !== "") {
+            $(element).attr("href", $(element).attr("href") + inputValue);
+            return true;
+        } else {
+            alert("输入内容不能为空！");
+            return false;
+        }
+    }
+    // 获取输入的Markdown文本
+    const divElement = document.getElementById("Maincontent");
+
+    // 获取 <div> 元素中的 Markdown 文本
+    const markdownText = divElement.innerHTML;
+
+    // 创建 Showdown 的 Converter 对象
+    const converter = new showdown.Converter();
+
+    // 将 Markdown 转换为 HTML
+    const htmlText = converter.makeHtml(markdownText);
+
+    // 将转换后的 HTML 设置回 <div> 元素中
+    divElement.innerHTML = htmlText;
+
+    L2Dwidget.init({ "model": { jsonPath:
+                "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+            "scale": 1 }, "display": { "position": "right", "width": 110, "height": 150,
+            "hOffset": 0, "vOffset": -20 }, "mobile": { "show": true, "scale": 0.5 },
+        "react": { "opacityDefault": 0.8, "opacityOnHover": 0.1 } });
+
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+<script src="https://myhkw.cn/api/player/1689236947114" id="myhk" key="1689236947114" m="1"></script>
+</html>

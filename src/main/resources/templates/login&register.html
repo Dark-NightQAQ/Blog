@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../static/css/loginStyle.css">
+    <link href="../static/images/favicon.ico" rel="icon" type="image/x-ico">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/sanh.js"></script>
+</head>
+
+<body>
+    <div class="content-log" id="log">
+        <h1>登录</h1>
+        <form method="post" action="/Login">
+            <input type="text" placeholder="请输入账号" name="username" class="use">
+            <input type="password" placeholder="请输入密码" name="password" class="pwd">
+            <input type="submit" value="登录" class="log">
+        </form>
+        <button onclick="log()">注册&nbsp;→</button>
+    </div>
+    <div class="content-reg" id="reg">
+        <h1>注册</h1>
+        <form method="post" action="/register">
+            <input type="text" placeholder="请输入账号" name="username" class="use">
+            <input type="password" placeholder="请输入密码" name="password" class="pwd">
+            <input type="text" placeholder="请输入密钥" name="key" class="pwd">
+            <input type="submit" value="注册" class="log">
+        </form>
+        <button onclick="reg()">←&nbsp;登录</button>
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${error}">报错</title>
+    <link rel="stylesheet" href="../static/css/loginStyle.css">
+    <link href="../static/images/favicon.ico" rel="icon" type="image/x-ico">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/sanh.js"></script>
+</head>
+
+<body>
+    <div class="content-log" id="log">
+        <h2 th:text="${error}">错误</h2>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我</title>
+
+    <link href="../static/images/favicon.ico" rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="../static/lib/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+</head>
+<body>
+
+<!--导航-->
+<nav class="gird-header" style="background-color: #0e7ed2">
+    <div class="ui m-container" >
+        <div class="ui inverted secondary stackable menu ">
+            <a href="/index" style="max-width: 200px" target="_self"><h2 class="ui olive header item" style="font-family: Comic Sans MS;color: #c2dde6 !important;">YANG</h2></a>
+            <a href="/index" class="m-item item m-mobile-hide" target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;">首页</a>
+            <a href="/type" class=" m-item item m-mobile-hide"  target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;">分类</a>
+            <a href="/message" class="m-item item m-mobile-hide"  target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;">留言板</a>
+            <a href="/about" class="active m-item item m-mobile-hide"  target="_self" style="background-color: #f9f9ff !important;color:#151516 !important;font-family: STHeiti;font-size: 15px;">关于我</a>
+            <a href="/uLogin" th:unless="${session.account}"  class="right m-item item ui secondary basic button m-mobile-hide" target="_self" style="color:#1e030d !important;font-family: STHeiti;font-size: 15px;"><i class="sign in icon"></i>登录</a>
+            <div class="user-info-wrapper right m-item item ui secondary basic m-mobile-hide" th:if="${session.account}">
+                <a href="javascript:void(0);" class="user-info">
+                    <img th:if="${session.account}" th:src="${session.account.getAvatar()}" src="../static/images/me.jpg" alt="" class="user-img">
+                    <div class="blink-animation" th:if="${session.account.getComment()} > 0">
+                        <span class="main-circle" style="background:#FA5A57;"></span>
+                    </div>
+                </a>
+                <div class="user-info-box">
+                    <div class="drop-down-header">
+                        <h4 th:if="${session.account}" th:text="${session.account.getNickname()}">me</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="/profile" target="_self">
+                                <i class="far fa-edit"></i> 个人资料
+                            </a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="/replyView" target="_self">
+                                <i class="far fa-edit"></i> 回复
+                            </a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="/logout" target="_self">
+                                <i class="fas fa-sign-out-alt"></i> 退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a  class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+
+
+<!--顶部背景图片-->
+<div class="m-bg-type_outer" style="width: 100%;height: 50%">
+    <img src="../static/images/about.jpg" alt="" class="ui m-bg image" style="width: 100%;height: 100%">
+    <div class="m-bg-class_cover">
+        <div class="ui container" style="position: relative ;bottom: -540px;">
+            <div class="m-font-size-title" align="center" style="font-family:'KaiTi'">关于我</div>
+            <div class="m-font-size-text-init-title m-margin-top" align="center">小小的自我介绍</div>
+        </div>
+    </div>
+</div>
+
+<!--个人资料描述-->
+<div class="ui container m-opacity box-shadow-max">
+    <div class="ui segment m-margin-" align="center">
+        <div class="m-margin-top-large" align="center">
+            <img class="ui circular image" align="center" src="../static/images/me.jpg" style="width: 150px;height: 150px;">
+        </div>
+    <div class="m-margin-top-small" style="font-size: x-large;font-family: STSong" align="center">YANG</div>
+
+    <div class="m-margin-top" align="center">
+        <a href="#" class="ui QQ circular icon button" data-content="2239797907@qq.com" data-position="bottom center"><i class="qq icon"></i></a>
+    </div>
+        <hr class="m-margin-top-small" style="width: 30%">
+        <br>
+        <div>
+          <h4>感谢光临本站</h4>
+          <h4>姓名：YANG</h4>
+          <h4>年级：目前准大二</h4>
+          <h4>爱好：打CSGO或APEX,也喜欢玩些小类游戏</h4>
+          <h4>学习编程时间：从22年10月开始,距离现在也快一年了</h4>
+            <h4 style = "color: #0D83E3">感谢你访问本站</h4>
+            <p></p>
+            <p></p>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+<!--置顶图标-->
+<div id="toolbar" class="m-padded-tb-large m-fixed m-right-bottom">
+    <a href="#" class="ui center aligned basic segment icon"><i class="ui medium orange chevron up icon"></i> </a>
+</div>
+
+  <br>
+  <br>
+
+  <!--底部栏-->
+  <footer class="ui vertical segment m-padded-tb-massive m-opacity">
+    <!--容器-->
+    <div class="ui center aligned container">
+      <div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced">CREATE BY YANG</div>
+    </div>
+    </div>
+  
+  </footer>
+<!--    动态线条-->
+<script type="text/javascript" color="47,79,79" opacity='0.7' zIndex="-2" count="150" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+<script src="../static/lib/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+<script src="../static/lib/semantic/dist/semantic.min.js"></script>
+<script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+<script>
+    // 显示邮箱
+    $('.QQ').popup();
+
+    L2Dwidget.init({ "model": { jsonPath:
+                "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+            "scale": 1 }, "display": { "position": "right", "width": 110, "height": 150,
+            "hOffset": 0, "vOffset": -20 }, "mobile": { "show": true, "scale": 0.5 },
+        "react": { "opacityDefault": 0.8, "opacityOnHover": 0.1 } });
+
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+  </script>
+</body>
+<script src="https://myhkw.cn/api/player/1689236947114" id="myhk" key="1689236947114" m="1"></script>
+</html>
